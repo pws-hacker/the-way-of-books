@@ -15,40 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="h\advise12.h">
+      <Filter>h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\advise12.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\advise01.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\advise02.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\advise03.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\advise04_05_06.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\advise07_08_09.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="h\advise01.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="h\advise02.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="h\advise03.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="h\advise04_05_06.h">
-      <Filter>h</Filter>
-    </ClInclude>
-    <ClInclude Include="h\advise07_08_09.h">
-      <Filter>h</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
 #include "advise02.h"
+#include "advise04_05_06.h"
+#include "advise07_08_09.h"
 #include <stdlib.h>
 
 int main()
@@ -30,6 +32,23 @@ int main()
 
 	printf("\n");
 	adviseTwo.test06_error_demo1();
+
+	AdviseFour adviseFour;
+	adviseFour.test01_right();
+
+	printf("\n");
+	AdviseFive adviseFive;
+	adviseFive.test01_error_demo();
+
+	AdviseSix adviseSix;
+	adviseSix.test01_right_demo();
+
+	printf("\n");
+	AdviseEight adviseEight;
+	adviseEight.test_01_right();
+
+
+	
 	system("pause");
 	return 0;
 }

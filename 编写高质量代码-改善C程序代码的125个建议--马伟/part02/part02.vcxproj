@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{33bf4128-ce2c-4230-9bd6-2c1a9c75b434}</ProjectGuid>
-    <RootNamespace>part01</RootNamespace>
+    <ProjectGuid>{9bceff67-4ef1-4f14-85af-0992895078cd}</ProjectGuid>
+    <RootNamespace>part02</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -141,19 +141,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\advise01.cpp" />
-    <ClCompile Include="src\advise02.cpp" />
-    <ClCompile Include="src\advise03.cpp" />
-    <ClCompile Include="src\advise04_05_06.cpp" />
-    <ClCompile Include="src\advise07_08_09.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClInclude Include="h\advise12.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="h\advise01.h" />
-    <ClInclude Include="h\advise02.h" />
-    <ClInclude Include="h\advise03.h" />
-    <ClInclude Include="h\advise04_05_06.h" />
-    <ClInclude Include="h\advise07_08_09.h" />
+    <ClCompile Include="src\advise12.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
