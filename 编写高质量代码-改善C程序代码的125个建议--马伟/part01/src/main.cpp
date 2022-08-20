@@ -42,13 +42,17 @@ int main()
 
 	AdviseSix adviseSix;
 	adviseSix.test01_right_demo();
+	adviseSix.test02_error_demo();
 
 	printf("\n");
 	AdviseEight adviseEight;
 	adviseEight.test_01_right();
+	adviseEight.test_02_right();
+	adviseSix.test02_error_demo();
 
-
-	
+	printf("\n");
+	AdviseNine adviseNine;
+	adviseNine.test_01_right();
 	system("pause");
 	return 0;
 }

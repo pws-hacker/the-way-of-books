@@ -56,7 +56,12 @@ int str_cmp(const PCHAR, const PCHAR)
 	// "const PCHAR" 中的 const 给予了整个指针本身常量性，形成了常量指针 "char* const（一个指向 char 的常量指针）"
 	return 0;
 };
+extern int g_test_extern;
+//extern int g_test_static_variable;
 void AdviseSix::test02_error_demo()
 {
-
+	int res = g_test_extern;
+	//int ret = g_test_static_variable;
+	printf("g_test_extern = %d\n", res);
+	//printf("g_test_static_variable = %d\n", ret);
 }
