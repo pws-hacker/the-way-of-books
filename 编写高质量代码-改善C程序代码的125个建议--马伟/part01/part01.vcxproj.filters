@@ -33,6 +33,9 @@
     <ClCompile Include="src\advise07_08_09.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\advise10_11_12.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="h\advise01.h">
@@ -48,6 +51,9 @@
       <Filter>h</Filter>
     </ClInclude>
     <ClInclude Include="h\advise07_08_09.h">
+      <Filter>h</Filter>
+    </ClInclude>
+    <ClInclude Include="h\advise10_11_12.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>

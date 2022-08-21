@@ -1,6 +1,7 @@
 #include "advise02.h"
 #include "advise04_05_06.h"
 #include "advise07_08_09.h"
+#include "advise10_11_12.h"
 #include <stdlib.h>
 
 int main()
@@ -53,6 +54,10 @@ int main()
 	printf("\n");
 	AdviseNine adviseNine;
 	adviseNine.test_01_right();
+
+	printf("\n");
+	Advise11 advise11;
+	advise11.test_01_demo();
 	system("pause");
 	return 0;
 }

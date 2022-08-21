@@ -146,6 +146,7 @@
     <ClCompile Include="src\advise03.cpp" />
     <ClCompile Include="src\advise04_05_06.cpp" />
     <ClCompile Include="src\advise07_08_09.cpp" />
+    <ClCompile Include="src\advise10_11_12.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="h\advise03.h" />
     <ClInclude Include="h\advise04_05_06.h" />
     <ClInclude Include="h\advise07_08_09.h" />
+    <ClInclude Include="h\advise10_11_12.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
