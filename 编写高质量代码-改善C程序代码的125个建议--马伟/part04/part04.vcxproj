@@ -142,11 +142,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\advise27~30.h" />
-    <ClInclude Include="include\advise31.h" />
+    <ClInclude Include="include\advise31~34.h" />
+    <ClInclude Include="include\advise35.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\advise27~30.cpp" />
-    <ClCompile Include="src\advise31.cpp" />
+    <ClCompile Include="src\advise31~34.cpp" />
+    <ClCompile Include="src\advise35.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
