@@ -27,6 +27,9 @@ int main()
 	advise35.test_03_right(5, &sum2);
 	printf("sum1 = %d\n", sum1);
 	printf("sum2 = %d\n", sum2);
+
+	Advise37 advise37;
+	advise37.test_01_demo();
 	system("pause");
 	return 0;
 }
