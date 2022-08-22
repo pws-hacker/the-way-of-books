@@ -21,7 +21,7 @@
     <ClInclude Include="include\advise31~34.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\advise35.h">
+    <ClInclude Include="include\advise35~40.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="src\advise31~34.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\advise35.cpp">
+    <ClCompile Include="src\advise35~40.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

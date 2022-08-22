@@ -1,6 +1,6 @@
 #include "advise27~30.h"
 #include "advise31~34.h"
-#include "advise35.h"
+#include "advise35~40.h"
 #include <stdio.h>
 #include <stdlib.h>
 int main()
@@ -30,6 +30,11 @@ int main()
 
 	Advise37 advise37;
 	advise37.test_01_demo();
-	system("pause");
+
+	printf("\n");
+	Advise39 advise39;
+	advise39.test_01_demo();
+	advise39.test_02_demo();
+	advise39.test_03_demo();
 	return 0;
 }
