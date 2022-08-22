@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="h\advise12.h">
+    <ClInclude Include="h\advise40.h">
       <Filter>h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\advise12.cpp">
+    <ClCompile Include="src\advise40.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
