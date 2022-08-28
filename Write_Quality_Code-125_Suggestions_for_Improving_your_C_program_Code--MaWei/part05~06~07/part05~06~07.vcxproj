@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="h\advise40~51.h" />
     <ClInclude Include="h\advise52~58.h" />
-    <ClInclude Include="h\advise59.h" />
+    <ClInclude Include="h\advise59~61.h" />
+    <ClInclude Include="h\advise62.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\advise40~51.cpp" />
     <ClCompile Include="src\advise52~58.cpp" />
-    <ClCompile Include="src\advise59.cpp" />
+    <ClCompile Include="src\advise59~61.cpp" />
+    <ClCompile Include="src\advise62.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
