@@ -142,9 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="h\advise102~104.h" />
+    <ClInclude Include="h\advise105~108.h" />
     <ClInclude Include="h\advise97.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\advise102~104.cpp" />
+    <ClCompile Include="src\advise105~108.cpp" />
     <ClCompile Include="src\advise97.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
