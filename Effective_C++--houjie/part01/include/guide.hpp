@@ -1,5 +1,17 @@
 #pragma once
 
+template<typename T>
+inline void outLog(const T& arg)
+{
+	std::cout << arg << std::endl;
+}
+
+
+
+
+
+
+
 // 术语(terminology)
 
 // a.声明式(declaration)	--名称和类型
