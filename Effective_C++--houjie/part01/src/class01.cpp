@@ -65,34 +65,116 @@ void Class01::testConstPoint()
 
 void Class01::testClassConstFunc()
 {
-	CTestBlock ta("abc", "ta");
+	CTestConstFunc ta("abc", "ta");
 	outLog(ta[0]);				// 调用 non-const CTestBlock::operator[]
 	outLog("结论：非常量对象调用 非常函数");
 
-	const CTestBlock tb("abc", "tb"); 
+	const CTestConstFunc tb("abc", "tb"); 
 	outLog(tb[0]);              // 调用 const CTestBlock::operator[]
 	outLog("结论：常量对象调用 常函数--函数后面加 const");
 }
 
 void Class01::testClassConstVariable()
 {
+	// 两个流行概念  
+	// 一是 bitwise const ,bitwise const 正是 C++ 对常量性 (constness) 的定义，因此 const 成员函数不可以更改对象内任何 non_static 成员变量
+	// 声明为 const 却能改成员变量的值
+	const CTestConstVariable tc((char*)"bcd","tc");
+	char* pc = &tc[0];
+	
+	//*pc = 'j';   // 书中这里讲可以改变里面的值，但是测试却是写入权限冲突
+	outLog(tc[0]);
+
+	outLog("结论：写入权限冲突");
+
+	// 二是 logical const
+	// 主张一个 const 成员函数可以修改它所处理的对象内的某些 bits,但只有在客户端侦测不出的情况下才得如此
 
 }
 
-CTestBlock::CTestBlock(const std::string txt,const std::string id)
+void Class01::testClassConstAndNon_constFunc()
+{
+	CTestConstNon_constFunc testFunc("cde","testFunc");
+	testFunc[0] = 'a';
+	outLog(testFunc[0]);
+	outLog("结论：使用 non-const 版本调用 const 版本可避免代码重复");
+}
+
+CTestConstFunc::CTestConstFunc(const std::string txt,const std::string id)
 	: text(txt)
 {
 	outLog(id);
 }
 
-const char& CTestBlock::operator[](std::size_t position) const
+const char& CTestConstFunc::operator[](std::size_t position) const
 {
 	outLog("excute const func.");
 	return text[position];
 }
 
-char& CTestBlock::operator[](std::size_t position)
+char& CTestConstFunc::operator[](std::size_t position)
 {
 	outLog("excute non-const func.");
 	return text[position];
+}
+
+CTestConstVariable::CTestConstVariable(char* txt, const std::string id)
+	: pText(txt)
+	, textLength(0)
+	, lengthIsValid(false)
+{
+	outLog(id);
+}
+
+char& CTestConstVariable::operator[](std::size_t position) const
+{
+	outLog("excute const func.");
+	return pText[position];
+}
+
+char& CTestConstVariable::operator[](std::size_t position)
+{
+	outLog("excute non-const func.");
+	return pText[position];
+}
+
+std::size_t CTestConstVariable::length() const
+{
+	if (!lengthIsValid)
+	{
+		// 错误 ,在 const 成员函数内不能赋值给 non-const 成员变量
+		textLength = std::strlen(pText);
+		lengthIsValid = true;
+	}
+	return textLength;
+}
+
+CTestConstNon_constFunc::CTestConstNon_constFunc(const std::string txt, const std::string id)
+	: text(txt)
+{
+	outLog(id);
+}
+
+const char& CTestConstNon_constFunc::operator[](std::size_t position) const
+{
+	// ...边界检验
+	// ...志记数据访问
+	// 等等
+	return text[position];
+}
+
+char& CTestConstNon_constFunc::operator[](std::size_t position)
+{
+	// ...边界检验
+	// ...志记数据访问
+	// 等等
+	//return text[position];
+
+	// 这样写可以避免代码重复
+	// 当 const 和 non-const 成员函数有着实质等价的实现时，令 non-const 版本调用 const 版本可避免代码重复
+	// 两次转型
+	// 一次是用来为 (*this) 添加 const ,这使接下来调用 operator[] 时得以调用 const 版本
+	// 第二次是 从 const operator[] 的返回值中移除 const
+	// const_cast 强制类型转换操作符,转换掉 表达式中的 const 性质
+	return const_cast<char&>(static_cast<const CTestConstNon_constFunc&>(*this)[position]);
 }

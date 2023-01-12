@@ -40,12 +40,12 @@ inline void callWithMax(const T& a, const T& b)
 //   第一：使 class 接口比较容易理解，得知哪个函数可以改动对象内容哪个函数不行
 //   第二：它们使“操作 const 对象” 成为可能
 
-// 验证 const 成员函数
-// 验证 const 成员变量
+// 验证 const 成员函数  testClassConstFunc
 
-// const 成员函数不可以更改对象内任何 non-static 成员变量
+
+// const 成员函数不可以更改对象内任何 non-static 成员变量  testClassConstVariable
 // 一个更改了"指针所指物"的成员函数虽然不能算是 const ,但如果只有指针(而非所指物)隶属于对象，不会引起编译器异议
-
+// 验证 const 成员变量
 
 
 
@@ -53,7 +53,9 @@ inline void callWithMax(const T& a, const T& b)
 // 改为 const
 const double constInstance = 1.23;
 
-class CTestBlock;
+class CTestConstFunc;
+class CTestConstVariable;
+class CTestConstNon_constFunc;
 class Class01
 {
 public:
@@ -62,6 +64,7 @@ public:
 	void testConstPoint();
 	void testClassConstFunc();
 	void testClassConstVariable();
+	void testClassConstAndNon_constFunc();
 
 
 
@@ -75,17 +78,53 @@ private:
 };
 
 
-class CTestBlock
+class CTestConstFunc
 {
 public:
-	explicit CTestBlock(const std::string txt, const std::string id);
-	~CTestBlock() {};
+	explicit CTestConstFunc(const std::string txt, const std::string id);
+	~CTestConstFunc() {};
 
 	// operator[] for const 对象
 	const char& operator[](std::size_t position) const;
 	// operator[] for non_const 对象
 	char& operator[](std::size_t position);
 
+private:
+	std::string text;
+};
+
+class CTestConstVariable
+{
+public:
+	explicit CTestConstVariable(char* txt, const std::string id);
+	~CTestConstVariable() {};
+
+	// operator[] for const 对象
+	char& operator[](std::size_t position) const;
+	// operator[] for non_const 对象
+	char& operator[](std::size_t position);
+
+	std::size_t length() const;
+	
+
+private:
+	char* pText;
+	// 利用 mutable(可变的) mutable 释放掉 not-static 成员变量的 bitwise constness 约束
+	mutable std::size_t textLength;   // 最近一次计算的文本区块长度
+	mutable bool lengthIsValid;
+};
+
+
+class CTestConstNon_constFunc
+{
+public:
+	explicit CTestConstNon_constFunc(const std::string txt, const std::string id);
+	~CTestConstNon_constFunc() {};
+	// 这样两个版本兼容 const 和 non-const 代码重复
+	// operator[] for const 对象
+	const char& operator[](std::size_t position) const;
+	// operator[] for non_const 对象
+	char& operator[](std::size_t position);
 private:
 	std::string text;
 };

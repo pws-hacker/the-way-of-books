@@ -16,4 +16,7 @@ void PartHelper::excuteClass01()
 	class01.testInlineFunc();
 	class01.testConstPoint();
 	class01.testClassConstFunc();
+	class01.testClassConstVariable();
+	class01.testClassConstAndNon_constFunc();
+
 }
