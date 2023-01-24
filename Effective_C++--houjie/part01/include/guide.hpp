@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 
 template<typename T>
 inline void outLog(const T& arg)

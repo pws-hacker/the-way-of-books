@@ -1,13 +1,10 @@
 #pragma once
-#include "class01.h"
+#include "include/main_helper.h"
+
+#include "include/class01.h"
+#include "include/class02.h"
 
 
-
-class PartHelper
-{
-public:
-	static void excuteClass01();
-};
 
 void PartHelper::excuteClass01()
 {
@@ -18,5 +15,13 @@ void PartHelper::excuteClass01()
 	class01.testClassConstFunc();
 	class01.testClassConstVariable();
 	class01.testClassConstAndNon_constFunc();
+	class01.testCopyAssignment();
+}
 
+void PartHelper::excuteClass02()
+{
+	Class02 class02;
+	class02.testClassVirtual();
+	class02.testAutoPtr();
+	class02.testSharedPtr();
 }

@@ -21,6 +21,12 @@
     <ClCompile Include="src\class01.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\class02.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main_helper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\guide.hpp">
@@ -29,7 +35,10 @@
     <ClInclude Include="include\class01.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\main_helper.hpp">
+    <ClInclude Include="include\main_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\class02.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

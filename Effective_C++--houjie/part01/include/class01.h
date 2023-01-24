@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <list>
+
+
 
 // 条款01 视C++为一个语言城邦
 // 次语言
@@ -48,6 +51,64 @@ inline void callWithMax(const T& a, const T& b)
 // 验证 const 成员变量
 
 
+// 条款04 确定对象被使用前已先被初始化
+// 有些语境下未必会初始化
+
+// array( 来自C语言 )不保证其内容初始化，而 vector ( 来自 C++ STL) 有此保证
+// 最佳处理方式，永远在使用对象之前先将它初始化
+
+// 别混淆了  赋值  和   初始化
+// 成员变量属于内置类型(那么其初始化与赋值的成本相同)，也一定要使用初值列。
+// 如果成员变量是 const 或 reference 。它们就一定需要初值，不能被赋值
+// 两个成员变量的初始化带有次序性，例如初始化 array 时需要指定大小，因此代表大小的那个成员变量必须先有初值
+
+// 编译单元是指产出单一目标文件的那些源码，基本上它是单一源码文件加上其所含入的头文件
+// 问题：如果某编译单元内的某个 non-local static 对象的初始化动作使用了另一编译单元内的某个 non-local static对象
+//		它所用到的这个对象可能尚未被初始化，因为C++对“定义不同编译单元内的 non-local static 对象”的初始化次序并无明确定义
+
+// 重要：任何一种 non-const static 不论它是 local 或 non-local ,
+//		在多线程环境下“等待某事发生”都会有麻烦
+// 书中给出的解决方案是：在程序的单线程启动阶段手工调用所有 reference-returning 函数
+//		可消除与初始化有关的 “竞速形势”
+
+
+// 条款05 了解 C++ 默默编写并调用哪些函数
+//  编译器在调用时会创建  默认构造函数 拷贝构造函数 析构函数 所有这些函数都是 public 且 inline
+//  如果声明了一个有参构造函数，编译器不再创建默认构造函数
+
+//  在一个内含 reference 成员的 class 内支持赋值操作，必须自己定义 copy assignment 操作符
+//  面对 const 成员也一样 
+//  如果某个 基类 将 copy assignment 操作符声明为 private 。编辑器将拒绝为其 派生类 生成 
+//  copy assignment 操作符
+//  如果在一个内涵 reference 或者 const  成员变量的类内支持赋值操作，必须自己定义 copy assignment 操作符
+
+class TestConstructor
+{
+public:
+	TestConstructor() {};		// 默认构造函数
+	~TestConstructor() {};		// 析构函数
+	TestConstructor(const TestConstructor& test) {};  // 拷贝构造函数
+
+	TestConstructor& operator=(const TestConstructor& rhs) {};   // copy assignment 操作符
+};
+
+template<class T>
+class NameObject
+{
+public:
+	NameObject(std::string& name, const T& value)
+		: nameValue(name)
+		, objectValue(value)
+	{
+	};
+	//NameObject& operator=(const NameObject<T>& test) { return *this; };
+
+private:
+	std::string& nameValue;
+	const T objectValue;
+};
+
+
 
 #define INDEFINE_INSTANCE 1.23
 // 改为 const
@@ -56,6 +117,7 @@ const double constInstance = 1.23;
 class CTestConstFunc;
 class CTestConstVariable;
 class CTestConstNon_constFunc;
+class CTestVariableInitialize;
 class Class01
 {
 public:
@@ -65,7 +127,8 @@ public:
 	void testClassConstFunc();
 	void testClassConstVariable();
 	void testClassConstAndNon_constFunc();
-
+	void testVariableInitialize();
+	void testCopyAssignment();
 
 
 
@@ -127,4 +190,15 @@ public:
 	char& operator[](std::size_t position);
 private:
 	std::string text;
+};
+
+class CTestVariableInitialize
+{
+public:
+	CTestVariableInitialize(const std::string& name,const std::list<int>& idList);
+	~CTestVariableInitialize();
+private:
+	std::string m_sName;
+	std::list<int> m_listId;
+
 };

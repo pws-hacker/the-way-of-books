@@ -143,11 +143,14 @@
   <ItemGroup>
     <ClCompile Include="part01.cpp" />
     <ClCompile Include="src\class01.cpp" />
+    <ClCompile Include="src\class02.cpp" />
+    <ClCompile Include="src\main_helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\class01.h" />
+    <ClInclude Include="include\class02.h" />
     <ClInclude Include="include\guide.hpp" />
-    <ClInclude Include="include\main_helper.hpp" />
+    <ClInclude Include="include\main_helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -100,6 +100,55 @@ void Class01::testClassConstAndNon_constFunc()
 	outLog("结论：使用 non-const 版本调用 const 版本可避免代码重复");
 }
 
+class CTestPoint
+{
+	int x; // 这里则不一定会
+	int y;
+};
+
+// 此对象与另一个编译单元的全局函数对象 初始化次序不定
+extern CTestPoint indefiniteCase;
+// 非成员函数不允许使用 const
+// 解决方法
+const CTestPoint& getTestPointCase()
+{
+	// non-local static 对象用 local static 对象替换。local static 会在程序启动之前初始化
+	// 但是，这些函数“内涵static对象”的事实使它们在多线程系统中带有不确定性
+	static CTestPoint definiteCase;
+	return definiteCase;
+}
+void Class01::testVariableInitialize()
+{
+	int x;  // 这种写法会初始化
+	CTestPoint test;
+	int y = 0;							// 内置类型手动初始化
+	const char* txt = "A C-style string"; // 对指针进行手工初始化
+	double d;
+	std::cin >> d;	// 以读取 input stream 的方式完成初始化
+
+	CTestPoint point = getTestPointCase();
+	// point.x = 1;	// 返回 const T& 可以限制改动
+
+}
+
+void Class01::testCopyAssignment()
+{
+	std::string non_reference("non_reference");
+	std::string reference("reference");
+	std::string & testReference = non_reference;
+	testReference = reference;
+	non_reference = "1";
+	reference = "2";
+	outLog("结论：C++ 不允许让 reference 改指向不同对象");
+
+	std::string newDog("PersePhone");
+	std::string oldDog("Satch");
+	NameObject<int> p(newDog, 2);
+	NameObject<int> s(oldDog, 36);
+	//p = s;   // 报错
+	outLog("如果在一个内涵 reference 或者 const  成员变量的类内支持赋值操作，必须自己定义 copy assignment 操作符");
+}
+
 CTestConstFunc::CTestConstFunc(const std::string txt,const std::string id)
 	: text(txt)
 {
@@ -177,4 +226,21 @@ char& CTestConstNon_constFunc::operator[](std::size_t position)
 	// 第二次是 从 const operator[] 的返回值中移除 const
 	// const_cast 强制类型转换操作符,转换掉 表达式中的 const 性质
 	return const_cast<char&>(static_cast<const CTestConstNon_constFunc&>(*this)[position]);
+}
+
+// C++规定 对象的成员变量的初始化动作发生在进入构造函数本体之前。
+CTestVariableInitialize::CTestVariableInitialize(const std::string& name, const std::list<int>& idList)
+	: m_sName(name)   // 直接初始化
+	, m_listId(idList)  // 执行的是  复制 构造 函数
+{
+	// 如果不使用直接初始化 ，赋值版本 会首先调用 默认构造函数 初始化成员变量，然后再赋予新值
+	m_sName = name;   // 这些都是赋值 而非初始化
+	m_listId = idList;
+
+
+
+}
+
+CTestVariableInitialize::~CTestVariableInitialize()
+{
 }
