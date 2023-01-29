@@ -238,11 +238,18 @@ public:
 // 2.两个常被使用的 RAII classes 分别是 tr1::shared_ptr 和 auto_ptr 。前者通常是较佳选择，因为 copy 行为比较直观
 //		若选择 auto_ptr ，复制动作会使它(被复制物)指向 null
 
-// 条款14 在资源管理类中小心 coping 行为
+
+
+// 条款14 在资源管理类中小心 copying 行为
 // 资源取得时机便是初始化时机 (Resource Acquisition Is Initialization;RAII)
 //  资源管理者 (resourse handlers) class 的基本结构由 RAII 守则支配
 //	也就是 “资源在构造期间获得，在析构期间释放”
 
+// 每一位 RAII class 作者一定需要面对：当一个 RAII 对象被复制，会发生什么事
+//   1.禁止复制
+//		将 copying 操作声明为 private
+//	 2.对底层资源使用 引用计数法
+//		通常只要内含一个 tr1::shared_ptr 成员变量，RAII classes 便可实现出 reference-counting copying 行为
 
 
 
