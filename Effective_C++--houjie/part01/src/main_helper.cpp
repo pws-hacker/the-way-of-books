@@ -24,4 +24,5 @@ void PartHelper::excuteClass02()
 	class02.testClassVirtual();
 	class02.testAutoPtr();
 	class02.testSharedPtr();
+	class02.testGetFunc();
 }

@@ -57,6 +57,7 @@ public:
 	void testClassVirtual();
 	void testAutoPtr();
 	void testSharedPtr();
+	void testGetFunc();
 
 
 
@@ -250,6 +251,41 @@ public:
 //		将 copying 操作声明为 private
 //	 2.对底层资源使用 引用计数法
 //		通常只要内含一个 tr1::shared_ptr 成员变量，RAII classes 便可实现出 reference-counting copying 行为
+//	 3.复制底部资源
+//		在此情况下复制资源管理对象，应该同时也复制其包裹的资源，也就是进行 深度拷贝
+//	 4.转移底部资源的拥有权
+//		某些场合希望永远只有一个 RAII 对象指向一个未加工资源，即使 RAII 对象被复制依然如此，
+//		此时资源的拥有权会从被复制物转移到目标物
 
+// 条款15 在资源管理类中提供对原始资源的访问
+//	APIs 往往要求访问原始资源，所以每一个 RAII class 应该提供一个“取得其管理资源”的办法
+//  对原始资源的访问可能经由显式转换或隐式转换。一般而言显式转换比较安全，但隐式转换对客户比较方便
 
+class CFont
+{
+public:
+	explicit CFont(const std::string* name)
+		: m_pName(name)
+	{
+	};
+	~CFont()
+	{
+		delete m_pName;
+		m_pName = NULL;
+	};
+
+public:
+	// 提供显式转换函数
+	const std::string* get() const
+	{
+		return m_pName;
+	};
+	// 隐式转换函数， 结构为： 类型() 
+	operator const std::string* () const
+	{
+		return m_pName;
+	}
+private:
+	const std::string* m_pName;
+};
 

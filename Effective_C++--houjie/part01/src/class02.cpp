@@ -36,3 +36,14 @@ void Class02::testSharedPtr()
 	if (!sharedPtr2.get()) outLog("sharedPtr2 is null");
 	outLog("结论：shared_ptr 若通过 copy 构造函数或 copy assignment 操作符复制它们，它们不会变成 null");
 }
+
+void Class02::testGetFunc()
+{
+	std::string* name = new std::string("saisai");
+	CFont font(name);
+	const std::string* nameExplicit = font.get();
+	outLog(*nameExplicit);
+	const std::string* nameImplicit = font;
+	outLog(*nameImplicit);
+	outLog("结论：学习显式获取内部资源和隐式获取内部资源函数写法");
+}
