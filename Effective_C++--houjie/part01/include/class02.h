@@ -2,6 +2,7 @@
 #include "guide.hpp"
 
 
+
 // 条款06 若不想使用编辑器自动生成的函数，就该明确拒绝
 //  阻止 copying
 //  一、可以将 copy 构造函数或 copy assignment 操作符声明为 private 
@@ -58,6 +59,8 @@ public:
 	void testAutoPtr();
 	void testSharedPtr();
 	void testGetFunc();
+	void testNewDeleteArray();
+	void testNewedSharePtr();
 
 
 
@@ -288,4 +291,22 @@ public:
 private:
 	const std::string* m_pName;
 };
+
+// 条款16 成对使用 new 和 delete 时要采取相同形式
+//  如果你在 new 表达式中使用 [] ，必须在相应的 delete 表达式中也使用 [] 
+//  如果你在 new 表达式中不使用 [] , 一定不要在相应的 delete 表达式中使用 []
+
+
+// 条款17 以独立语句将 newed 对象置入智能指针
+//  如果不这样做，一旦异常被抛出，有可能导致难以察觉的资源泄漏
+class CWidget
+{
+public:
+	std::string m_sName;
+};
+void processWidget(std::tr1::shared_ptr<CWidget> pw, int priority)
+{
+	outLog(pw.get()->m_sName);
+	return;
+}
 

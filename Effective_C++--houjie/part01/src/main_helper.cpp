@@ -25,4 +25,8 @@ void PartHelper::excuteClass02()
 	class02.testAutoPtr();
 	class02.testSharedPtr();
 	class02.testGetFunc();
+	class02.testNewDeleteArray();
+	class02.testNewedSharePtr();
+
+
 }
