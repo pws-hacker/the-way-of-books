@@ -96,5 +96,10 @@ public:
 //		不适用 内置类型，内置类型使用 pass-by-value 比较适当
 
 // 条款21 必须返回对象，别妄想返回其 reference
+//		绝对不要返回 pointer 或 reference 指向一个 local stack 对象，或返回 reference 指向一个 heap-allocated 对象
+//		或返回 pointer 或 reference 指向一个 local static 对象而有可能需要多个这样的对象
+
+
+// 条款22 将成员变量声明为 private
 
 
