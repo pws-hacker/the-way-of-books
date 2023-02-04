@@ -74,3 +74,8 @@ void Class02::testNewedSharePtr()
 {
 	processWidget((std::tr1::shared_ptr<CWidget>)new CWidget, priority());
 }
+
+CChainAssignment& CChainAssignment::operator=(const CChainAssignment& rhs)
+{
+	return *this;
+}

@@ -90,10 +90,8 @@ class CChainAssignment
 public:
 	// 返回 reference 指向当前对象
 	// 适用于所有赋值相关运算
-	CChainAssignment& operator = (const CChainAssignment& rhs)
-	{
-		return *this;
-	}
+	CChainAssignment& operator = (const CChainAssignment& rhs);
+
 };
 
 // 条款11 在 operator = 中处理 “自我赋值”
@@ -209,6 +207,7 @@ private:
 	int priority;
 };
 
+// 第三章 资源管理
 
 // 条款13 以对象管理资源
 //  auto_ptr 是 “类指针对象” 智能指针
@@ -309,4 +308,3 @@ void processWidget(std::tr1::shared_ptr<CWidget> pw, int priority)
 	outLog(pw.get()->m_sName);
 	return;
 }
-

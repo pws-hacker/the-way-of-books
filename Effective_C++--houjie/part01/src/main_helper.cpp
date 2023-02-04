@@ -3,6 +3,7 @@
 
 #include "include/class01.h"
 #include "include/class02.h"
+#include "include/class03.h"
 
 
 
@@ -28,5 +29,10 @@ void PartHelper::excuteClass02()
 	class02.testNewDeleteArray();
 	class02.testNewedSharePtr();
 
+}
+
+void PartHelper::excuteClass03()
+{
+	Class03 class03;
 
 }

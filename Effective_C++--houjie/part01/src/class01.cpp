@@ -4,6 +4,7 @@
 #include "include/guide.hpp"
 
 const double Class01::staticConstInstance = 1.23;  // 定义式
+const int Class01::staticConstInstance2;  // 定义式 类内已经 赋初值
 void Class01::testMacroError()
 {
 	std::cout << "testMacroError" << std::endl;

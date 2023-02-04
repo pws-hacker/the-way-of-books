@@ -2,7 +2,7 @@
 #include <string>
 #include <list>
 
-
+// 第一章 自己习惯 C++
 
 // 条款01 视C++为一个语言城邦
 // 次语言
@@ -34,6 +34,7 @@ inline void callWithMax(const T& a, const T& b)
 // 记住
 // 1.对于单纯常量，最好以 const 对象或 enums 替换 #defines
 // 2.对于形似函数的宏(macros)，最好改用 inline 函数替换 #defines
+
 
 // 条款03 尽可能使用 const
 // 常量指针，指针常量
@@ -71,6 +72,8 @@ inline void callWithMax(const T& a, const T& b)
 // 书中给出的解决方案是：在程序的单线程启动阶段手工调用所有 reference-returning 函数
 //		可消除与初始化有关的 “竞速形势”
 
+
+// 第二章 构造，析构，赋值
 
 // 条款05 了解 C++ 默默编写并调用哪些函数
 //  编译器在调用时会创建  默认构造函数 拷贝构造函数 析构函数 所有这些函数都是 public 且 inline
@@ -134,6 +137,8 @@ public:
 
 private:
 	static const double staticConstInstance;  // 声明式 static const 编译器不允许类内赋初值
+	// class 专属常量，又是 static 且为整数类型，需要特殊处理
+	static const int staticConstInstance2 = 1;  // 声明式 static const 且类型为 整形 ，编译器允许类内赋初值
 	const double classConstInstance = 1.23;   // const 编译器允许类内赋初值
 
 	// 如果编译器不允许类内赋初值，可以使用 enum 替代下
